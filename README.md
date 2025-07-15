@@ -12,6 +12,8 @@ The Chainguard dockerfile converter (dfc) has been [installed](https://github.co
 Run the dfc:
 `dfc nodejs-ubuntu.before.Dockerfile > nodejs-ubuntu.after.Dockerfile`
 
+NOTE: because of differences in the behavior of `useradd` and `adduser` add `-D` to the after.Dockerfile.
+
 `docker build -f nodejs-ubuntu.after.Dockerfile . -t after-dfc-app`
 
 `docker run --name after-dfc-app --rm -p 3001:3000 after-dfc-app`
