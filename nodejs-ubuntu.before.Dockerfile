@@ -5,7 +5,7 @@ FROM ubuntu:20.04
 
 # Set environment variables
 ENV DEBIAN_FRONTEND=noninteractive
-ENV NODE_VERSION=16.x
+ENV NODE_VERSION=22.x
 
 # Update and install dependencies
 RUN apt-get update && apt-get upgrade -y && \
@@ -20,8 +20,8 @@ RUN curl -sL https://deb.nodesource.com/setup_${NODE_VERSION} | bash - && \
 
 # Add a non-root user
 RUN useradd -m -s /bin/bash appuser
-WORKDIR /home/appuser/app
-RUN chown -R appuser:appuser /home/appuser
+WORKDIR /app
+RUN chown -R appuser:appuser /app
 
 # Switch to non-root user
 USER appuser
@@ -37,4 +37,4 @@ COPY --chown=appuser:appuser . .
 EXPOSE 3000
 
 # Start command
-CMD ["npm", "start"] 
+CMD ["node", "app/app.js"] 

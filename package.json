@@ -1,0 +1,24 @@
+{
+  "name": "demo-dfc",
+  "version": "1.0.0",
+  "description": "Basic app to use with dfc demo",
+  "keywords": [
+    "dfc"
+  ],
+  "homepage": "https://github.com/aaronhmiller/demo-dfc#readme",
+  "bugs": {
+    "url": "https://github.com/aaronhmiller/demo-dfc/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aaronhmiller/demo-dfc.git"
+  },
+  "license": "Apache-2.0",
+  "author": "Aaron Miller",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app/app.js"
+  }
+}
