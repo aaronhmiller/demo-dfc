@@ -13,7 +13,7 @@ Demo of Chainguard's Dockerfile converter (dfc) tool. A simple NodeJS app is mig
 Run the dfc:
 `dfc --org <YOUR_ORG> nodejs-ubuntu.before.Dockerfile > nodejs-ubuntu.after.Dockerfile`
 
-NOTE: because of differences in the behavior of `useradd` and `adduser` add `-D` to the after.Dockerfile.
+NOTE: because of differences in the behavior of `useradd` and `adduser` add `-D` to the after.Dockerfile. [Issue](https://github.com/chainguard-dev/dfc/issues/101) raised.
 
 `docker build -f nodejs-ubuntu.after.Dockerfile . -t after-dfc-app`
 
