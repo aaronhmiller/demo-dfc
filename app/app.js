@@ -70,10 +70,21 @@ const server = http.createServer((req, res) => {
   }
 });
 
+// Track active connections
+const connections = new Set();
+
 // Start the server
 server.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}/`);
   console.log('Press Ctrl+C to stop the server');
+});
+
+// Track connections
+server.on('connection', (connection) => {
+  connections.add(connection);
+  connection.on('close', () => {
+    connections.delete(connection);
+  });
 });
 
 // Handle server errors
@@ -99,9 +110,14 @@ function shutdown() {
     process.exit(0);
   });
   
-  // Force close after 10 seconds
+  // Destroy all open connections
+  connections.forEach((connection) => {
+    connection.destroy();
+  });
+  
+  // Force close after 3 seconds (reduced from 10)
   setTimeout(() => {
     console.error('Could not close connections in time, forcefully shutting down');
     process.exit(1);
-  }, 10000);
+  }, 3000);
 }

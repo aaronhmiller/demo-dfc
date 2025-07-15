@@ -1,3 +1,6 @@
+# repo files to ignore for demo needs
+*after.Dockerfile
+
 # Logs
 logs
 *.log

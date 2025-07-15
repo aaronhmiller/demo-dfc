@@ -9,14 +9,9 @@ ENV NODE_VERSION=22.x
 
 # Update and install dependencies
 RUN apt-get update && apt-get upgrade -y && \
-    apt-get install -y curl wget gnupg git build-essential python3 && \
+    apt-get install -y curl wget gnupg git build-essential python3 bash nodejs npm && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
-
-# Add Node.js repository and install
-RUN curl -sL https://deb.nodesource.com/setup_${NODE_VERSION} | bash - && \
-    apt-get install -y nodejs && \
-    npm install -g npm@latest
 
 # Add a non-root user
 RUN useradd -m -s /bin/bash appuser
