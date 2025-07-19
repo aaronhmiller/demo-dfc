@@ -1,17 +1,17 @@
 // Simple Node.js HTTP Server
 // Save this as app.js or server.js
-
 const http = require('http');
-const url = require('url');
 
 // Define the port
 const PORT = 3000;
 
 // Create the server
 const server = http.createServer((req, res) => {
-  // Parse the URL
-  const parsedUrl = url.parse(req.url, true);
-  const pathname = parsedUrl.pathname;
+  // Parse the URL using the WHATWG URL API
+  // We need to construct a full URL by combining with the host
+  const baseURL = `http://${req.headers.host || 'localhost'}`;
+  const myURL = new URL(req.url, baseURL);
+  const pathname = myURL.pathname;
   
   // Set response headers
   res.setHeader('Content-Type', 'text/html; charset=utf-8');
@@ -94,7 +94,6 @@ server.on('error', (error) => {
 
 // Graceful shutdown with forced exit
 let isShuttingDown = false;
-
 process.on('SIGTERM', shutdown);
 process.on('SIGINT', shutdown);
 
