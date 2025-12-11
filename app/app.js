@@ -49,7 +49,7 @@ const server = http.createServer((req, res) => {
     res.statusCode = 200;
     res.end(JSON.stringify({
       message: 'Hello from the API!',
-      timestamp: Date.now(),
+      timestamp: new Date(Date.now()).toUTCString(),
       data: {
         users: 42,
         status: 'operational'
